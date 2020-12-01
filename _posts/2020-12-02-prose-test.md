@@ -1,5 +1,7 @@
 ---
-published: false
+title: "Prose 와 깃블로그 연동 테스트"
+date: 2020-12-02 01:09:00 -0400
+categories: 흠
 ---
 ## Prose 와 깃블로그 연동 테스트
 
