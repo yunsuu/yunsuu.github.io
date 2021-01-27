@@ -1,8 +1,6 @@
-function printName() {
-    var lastName = "seo";
-    this.firstName = "jeong kuk"
-    console.log(this.lastName + " " + this.firstName)
-}
-var lastName = "kim";
-printName();               // kim jeong kuk
-var o = new printName();   // undefined jeong kuk
+// for(const i=0; i<10; i++){
+//     console.log("Hello World!")
+// }
+
+const i = 0
+i = i + 1
