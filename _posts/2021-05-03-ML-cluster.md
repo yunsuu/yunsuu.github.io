@@ -1,5 +1,3 @@
-[→ Open in Slid](https://slid.cc/vdocs/efb3e2a723c24f03b3cdb4d522e3d542)
-
 ---
 
 ## 분류 : 데이터를 정해진 몇 개의 부류(class)로 대응시키는 문제
