@@ -1,0 +1,1600 @@
+우승현, 이윤수
+
+프론트 깃허브 : [https://github.com/SeunghyunWoo99/kidow](https://github.com/SeunghyunWoo99/kidow)
+
+서버 깃허브 : [https://github.com/yunsuu/ows-server](https://github.com/yunsuu/ows-server)
+
+# 목차
+
+- 프로젝트 개요와 소개
+- 서비스 대상과 차별성
+- 프로젝트 개발 세부사항
+- 구성원 및 역할
+- 기술 습득 노력
+- 소스코드 설명
+
+# **프로젝트 개요와 소개**
+
+뉴스 기사를 보면 코로나 의심 증세로 진료를 제때 받지 못해 일어나는 비극적인 사고들을 종종 볼 수 있다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b5ad4105-c67a-45c1-99c0-fc73261ac5fe/20210607165513.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b5ad4105-c67a-45c1-99c0-fc73261ac5fe/20210607165513.png)
+
+실제 의심증상으로 치료를 받지 못해 일어난 비극적 사고들
+
+이는 정부에서 지정한 코로나 안심 병원 제도가 국민들에게 충분히 전달되지 못했기 때문에 발생하는 문제이다.
+
+국민 안심 병원이란 일반 환자와 호흡기 환자를 분리해서 진료를 진행하는 병원을 말한다. 서로 분리해 진료를 진행하기 때문에 코로나가 아닌 환자들에게는 코로나에 옮을 걱정을 덜어줄 수 있다. 코로나 의심 증상 환자들도 선별진료소를 운영하는 병원이라면 간단한 진료 및 처방까지도 받을 수 있도록 하는 제도이다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e453fb28-d9ce-4717-b4a3-e1744a041dd6/20210607165533.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e453fb28-d9ce-4717-b4a3-e1744a041dd6/20210607165533.png)
+
+중앙일보 국민안심병원 제도 인지도 설문조사
+
+중앙일보에서 실시한 설문조사에 따르면 코로나 안심 병원 제도를 잘 모르는 국민이 훨씬 많다는 걸 확인할 수 있다. 하지만 이 제도가 시행된 지 얼마 안 되었기 때문에 환자가 올바르게 정보를 알고 찾아가기는 쉽지 않다.
+
+우리 팀은 국가에서 제공하는 공공데이터와 오픈 SW를 활용해 정부에서 시행하고 있는 코로나 병원 제도에 대한 정보의 접근성을 높여 병원을 찾아가는 사람들이 불편함을 겪지 않고 원활히 진료받을 수 있도록 해결책을 제시하고자 한다.
+
+# **서비스 대상과 차별성**
+
+## 서비스 대상
+
+- 코로나가 증상이 아니더라도 병원에 가기 불안함을 느끼는 환자들
+- 코로나와 유사한 증상을 가지고 있어 진료나 입원을 거부당할 수 있는 환자들
+
+## **차별성**
+
+[https://lh3.googleusercontent.com/x-ccKHd07eKwiYZOl20r5Lpc7ZAtO0PADtYCogvv095O8qHZC7C4bscf9paRBafyHzcauumfLhq52h_qnNNeEWxlr2fcKCEOT-SiXBE9hMrz3IvFqLKIxyIM9v2Vln8l9_5unSDw](https://lh3.googleusercontent.com/x-ccKHd07eKwiYZOl20r5Lpc7ZAtO0PADtYCogvv095O8qHZC7C4bscf9paRBafyHzcauumfLhq52h_qnNNeEWxlr2fcKCEOT-SiXBE9hMrz3IvFqLKIxyIM9v2Vln8l9_5unSDw)
+
+(보건복지부 코로나 안심병원 사이트)
+
+현재 우리 서비스와 비슷한 서비스로는 보건복지부에서 제공하는 코로나 안심병원 찾기 사이트가 존재한다. 하지만 이사이트에는 몇가지 문제점이 있다.
+
+### 1. **병원의 정보가 Table List 형식으로 제공된다.**
+
+- 각 병원의 정보가 Table List로 제공되어지기 때문에 병원의 위치정보를 한눈에 알아보기 힘들뿐만 아니라 병원의 위치정보를 확인하려면 지도 버튼을 눌러 일일이 들어가서 확인을 해야한다.
+
+### 2. **유저의 위치정보를 특정할때 주소를 기입해야 한다.**
+
+- 병원을 탐색할때 유저가 직접 주소를 입력해야하는 번거로움이 있다. 주소를 올바르게 넣고 탐색했다고 해도 각 병원들이 유저의 위치와 어느정도 떨어져있는지 알아보기 어렵다.
+
+### 3. **국민안심병원, 호흡기전담 클리닉 등 용어에 관한 설명이 미흡히다.**
+
+- 보건복지부에서 제공하는 사이트는 국민안심병원, 호흡기 전담 클리닉, 등 정부에서 지정한 코로나와 관련된 제도들을 의미한다. 일반 유저가 각 용어가 어떤걸 의미하고 어떤제도인지 의미를 직관적으로 알아보기 힘들다.
+
+우리 서비스는 정부가 코로나와 관련된 병원 제도들을 유저들에게 접근성 높게 제공함으로써 이러한 문제점을 해결하며 차별성을 가질 수 있도록 구현하였다.
+
+# **프로젝트 개발 세부사항**
+
+## **사용한 기술**
+
+React-native , Node js, Aws EC2
+
+[ㅇ 개발 환경의 사본](https://www.notion.so/64f803a794b545e6ba32b8d342c2e9fc)
+
+# **추진일정 및 주요기능 수행방법**
+
+## **추진 일정**
+
+[https://lh5.googleusercontent.com/pGNhkis58qHdSdE0ETF9ke628Oa3gEX7UmFz3HWp514dg6UHOK7fMSyJRzHxca52sl_IyMdQEGt-DyDNul24ogOvORpWsIthxnqGvlyHllGmb4KoxA8NxjCG1f-qsb0Y7wIzOWXU](https://lh5.googleusercontent.com/pGNhkis58qHdSdE0ETF9ke628Oa3gEX7UmFz3HWp514dg6UHOK7fMSyJRzHxca52sl_IyMdQEGt-DyDNul24ogOvORpWsIthxnqGvlyHllGmb4KoxA8NxjCG1f-qsb0Y7wIzOWXU)
+
+[초기 계획서 내용과 비교의 사본](https://www.notion.so/3b017374723946079920b13d677c796f)
+
+# **구성원 및 역할 (팀원기여도 이윤수:1/2, 우승현:1/2)**
+
+[https://lh6.googleusercontent.com/nQrk4aIjORZLNHHfAG-tmj-VNfhvH9nR6Usn3LkcRKTMJUxfnyWKf8lb49fwfC_CSDeOJb-A1u0fi6P9sH7gJRB2D37ue0X_7QeuCQO8aJOeZ_usnJ8MWRdqgUlvbQC_NcXl5Gbt](https://lh6.googleusercontent.com/nQrk4aIjORZLNHHfAG-tmj-VNfhvH9nR6Usn3LkcRKTMJUxfnyWKf8lb49fwfC_CSDeOJb-A1u0fi6P9sH7gJRB2D37ue0X_7QeuCQO8aJOeZ_usnJ8MWRdqgUlvbQC_NcXl5Gbt)
+
+# 기술 습득 노력
+
+### 이윤수
+
+백엔드에 대한 이해도를 높이기 위해 강의를 들으며 부족한 부분을 보충하기 위해 자율학습을 진행했다.
+
+백엔드에서는 다음과 같은 노력을 했다.
+
+1. Node.js - 생활코딩 유튜브 강의 완강
+
+node.js에 대해 기초적인 내용을 이해했다.
+
+2. Mysql - 생활코딩 유투브 강의 완강
+
+mysql을 통해 쿼리를 만드는 법에 대해 이해했다.
+
+3. AWS 기초강의 - 인프런 강의 완강
+
+AWS의 다양한 서비스를 이해하고 사용하는 방법을 익혔다.
+
+평소 깃허브로 협업한 경험이 없어서 이번 기회에 깃 협업에 대해서도 공부해보게 되었다. 
+
+수업을 통해 현업에서 사용하는 브랜치 구조들을 배울 수 있었고 우리 프로젝트에서 멘토링을 통해 배운 개념들을 실제로 적용해보며 활용해볼 수 있었다.
+
+git의 구조나 명령어에 대해서는 구글링을 해보기도 하고 해봐도 잘 모르는 경우는 팀원의 도움을 받아 가며 학습을 했다.
+
+평소 git을 왜 쓰는지 어떤 점이 좋은지 경험해볼 기회가 없어서 이해하지 못했다. 하지만 이번 기회에 실제 적용해보면서 현업에서 git이 왜 필수적으로 쓰이는지 경험해볼 수 있어서 유용했다.
+
+### 우승현
+
+프론트를 담당하면서 React native 에 대해서 공부하게 되었다.
+
+효율적인 코드를 짜려면 js의 기초가 탄탄해야 한다는 생각을 가지고 있었기 때문에 평소 항상 하고 싶었던 자바스크립트의 기초 공부를 이번 기회에 배워보자는 결심을 하게 되었다.
+
+기초를 공부하기 위해 인프런에서 강의를 수강했다.
+
+Javascript ES6+ 제대로 알아보기 – 중급
+
+([https://www.inflearn.com/course/es6-2](http://www.inflearn.com/course/es6-2/))
+
+이 강의를 들으면서 평소 자주 사용하던 자바스크립트의 문법의 기초를 단단히 다질 수 있는 기회가 되었다. 각 함수의 작동 방식이나 라이프 사이클을 구체적으로 알게 되어 프로젝트 하면서 코딩할 때 강의 덕분에 좀 더 효율적인 코드를 짤 수 있게 되었다.
+
+# **소스코드 설명**
+
+변경된 내용 명시 소스코드 모듈별 내용 정리 및 기능별 결과 화면
+
+## B**ack-end**
+
+### **일반 병원 탐색 api**
+
+[https://lh5.googleusercontent.com/MJnNxn7iKBhXo71KFSI9X_DUKqAZXqE8OL325pTQ41d5YOETqXYfvacbGwcCP3deaVoDKdnwMEF-DnjIpc-rzJXw9kEUCfz3vTzwiDUwEgERtdOXJBwawc1AhOznji2GueA6aCRD](https://lh5.googleusercontent.com/MJnNxn7iKBhXo71KFSI9X_DUKqAZXqE8OL325pTQ41d5YOETqXYfvacbGwcCP3deaVoDKdnwMEF-DnjIpc-rzJXw9kEUCfz3vTzwiDUwEgERtdOXJBwawc1AhOznji2GueA6aCRD)
+
+/ows/hospital로 일반 병원에 대한 data를 받을 수 있는 api이다. 공공 데이터 포털에서 제공해주는 데이터를 이용해 우리 서비스에 사용할 수 있도록 가공처리를 하였다.
+
+공공 데이터 포털과 서비스키를 조합해 나오는 결괏값을 request 모듈로 크롤링을 진행한다. 그 후 xml로 주는 형식을 우리 형식에 사용할 수 있도록 json으로 처리를해 fornt에 넘겨 주었다.
+
+**결과값**
+
+[https://lh4.googleusercontent.com/50Prxe6im-GmjzE-Z7dK2hSiuQSQagU6E8RIwBxfdnoBFqm_ZU2krjqr837F_noYCZKsWKSOkYKCJwKPeuu7DlqgelP8l0Zx_ZkGKWzx4ivfOZnoCW2aLADCPgtiyP0KpHqgfxVY](https://lh4.googleusercontent.com/50Prxe6im-GmjzE-Z7dK2hSiuQSQagU6E8RIwBxfdnoBFqm_ZU2krjqr837F_noYCZKsWKSOkYKCJwKPeuu7DlqgelP8l0Zx_ZkGKWzx4ivfOZnoCW2aLADCPgtiyP0KpHqgfxVY)
+
+### 코로나 병원 탐색 api
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5a0b48c6-b71f-40ea-9d60-81e5567d020b/20210607222304.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5a0b48c6-b71f-40ea-9d60-81e5567d020b/20210607222304.png)
+
+일반 병원 탐색 api와 과정이 비슷하다 하지만 다른 점이 있다면 공공 데이터 포털에서 제공해주는 데이터 format에서 반경으로 검색할 수 있는 기능이 없다.
+
+우리 서비스에는 지도 기능이 핵심 기능이므로 반경으로 병원을 탐색할 수 있는 기능이 꼭 필요해 직접 만들었다. 일반 병원 탐색 api와 같게 request 모듈로 크롤링을 진행 후 결괏값을 json으로 변환하였다. 그 후 geolib라는 위도 경도 거리 계산 모듈을 이용해 사용자의 위도 경도와 병원의 위도 경도가 설정한 반경 안에 있을 때 result 배열에 따로 넣어두어 result 배열을 front에 넘겨주는 방식으로 구현을 진행했다.
+
+결과값
+
+[https://lh4.googleusercontent.com/SK_so3IFqpI-AXRPuk9o4xCLi-8VEua4XZN5aHTqA1Lnp0uYrevgAPTegJhddgXaRkcfs--OXydofFjj8LzASyPL-F6BbkWijoU9ogXrsU9m8yokj5_Jxoi2WVVJ4H-mupJFUU0a](https://lh4.googleusercontent.com/SK_so3IFqpI-AXRPuk9o4xCLi-8VEua4XZN5aHTqA1Lnp0uYrevgAPTegJhddgXaRkcfs--OXydofFjj8LzASyPL-F6BbkWijoU9ogXrsU9m8yokj5_Jxoi2WVVJ4H-mupJFUU0a)
+
+### 코로나 설문 api
+
+[https://lh3.googleusercontent.com/4tdMSOpw6hEfSXEfifDxXiilplBE6yVEgg5y9qi_Av0B9k9y81tVoOIKSooNs7XVs_k4WYOiI1CQM0OQXF1tivEuY2tEIjsNak-adTcET53cN_AfnJVWtSeX5RbXXJAfE1oVusAZ](https://lh3.googleusercontent.com/4tdMSOpw6hEfSXEfifDxXiilplBE6yVEgg5y9qi_Av0B9k9y81tVoOIKSooNs7XVs_k4WYOiI1CQM0OQXF1tivEuY2tEIjsNak-adTcET53cN_AfnJVWtSeX5RbXXJAfE1oVusAZ)
+
+코드
+
+보건복지부 코로나 자가 진단 질문 + 의학적 검증이 보증된 자료들을 이용해 코로나 진단 설문을 만들었다.  질문은 다음과 같다.
+
+### 질문
+
+1. 나이
+2. 최근 앓고 있는 혹은 최근 2년간 앓았던 호흡기 질환이 있으신가요? (단순 감기, 독감 제외)
+3. 현재 체온이 얼마나 되나요?
+4. 코, 목 혹은 코와 목사에 통증이 있나요?
+5. 다른 증상과 비교했을 때 발열 증상이 언제 나타났나요?
+6. 숨이 가빠진걸 느껴본 적이 있는가?
+7. 겪고 있는 증상 중에 마른기침 증상이 있나요?
+8. 피로감이 있나요?
+9. 미각 혹은 후각 기능의 저하가 있나요?
+10. 앓고 있는 증상 중 근육통이 있나요?
+
+다음 10개의 질문에 대한 답을 front로부터 받아 각 문항의 배점별로 계산을 진행해 계산된 결과를 front에 다시 넘겨준다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e10397dd-ff8c-4b68-8621-2a468037549a/api_png.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e10397dd-ff8c-4b68-8621-2a468037549a/api_png.png)
+
+결과값
+
+---
+
+## Front**-end**
+
+소스 코드 설명에 앞서 폴더 구조를 먼저 설명하는 게 좋을 것 같다.
+
+```
+├── src
+│   ├── assets
+│   │  ├── fonts
+│   │  ├── images
+│   ├── components
+│   │  ├── atoms
+│   │  ├── molecules
+│   │  ├── organisms
+│   ├── navigations
+│   ├── scenes
+│   ├── styles
+│   ├── utils
+│   ├── index.js
+```
+
+폴더 구조는 위와 같이 atomic design에 기반하여 구성하였다 .atomic design이란 짜임새 있고 체계적인 UI 구성을 위한 아키텍쳐다.
+
+Don't Panic 프로젝트는 2인 개발자가 작업하는 소규모 프로젝트이기 때문에 component 안에 따로 디렉터리를 나누진 않았으나, 기본 개발 원칙은 철저히 atomic design에 기반했다.
+
+![https://blog.kakaocdn.net/dn/FnbiV/btq6Au249ca/kRVIWGnK8BH80xZKs24RwK/img.png](https://blog.kakaocdn.net/dn/FnbiV/btq6Au249ca/kRVIWGnK8BH80xZKs24RwK/img.png)
+
+더욱 편리한 atomic design 사용을 위해서 상대 경로로 파일을 가져올 필요 없이 babel로 절대 경로 설정을 해주었다. 절대 경로를 사용하면 임포트 구조가 단순화된다는 장점이 있다.
+
+👇 이런 코드를
+
+```
+import { PostWebViewScreen } from './src/scenes'
+```
+
+👇 이렇게 바꿀 수 있다.
+
+```
+import { PostWebViewScreen } from 'scenes'
+```
+
+이 외에 정적 타이핑이 가능한 typescript의 사용을 도와주는 eslint와 prettier도 사용 설정을 했다.
+
+# 내비게이션 구조
+
+그다음으로 설명해야 할 것은 내비게이션 구조이다.
+
+내비게이션이란 사용자가 앱 내의 여러 콘텐츠를 탐색하고, 그곳에 들어갔다가 나올 수 있게 하는 상호작용을 의미한다. 소스 코드 설명 전 내비게이션 구조를 먼저 설명하려는 이유는 내비게이션의 구조가 앱 전체적인 뼈대와 깊이 관련이 있을뿐더러, 내비게이션 구조를 파악하는 것이 소스 코드의 이해에 도움이 되기 때문이다.
+
+본 프로젝트의 내비게이션 구조는 다음과 같다.
+
+```
+├── App				// 어플리케이션 최상단에 위치
+│   ├── MainTabNavigator	// 앱을 켜먼 가장 먼저 보이는, root에 가장 가까운 Tab Navigator
+│   │  ├── MapScreen		// 지도 화면
+│   │  ├── PostScreen		// 코로나 현황과 관련 최신 뉴스들을 모은 화면
+│   ├── PostWebViewScreen	// 코로나 뉴스를 누르면 웹뷰로 이동함. Bottom Tab 위로 화면이 올라와야 하므로 MainTabNavigator와 같은 계층에 두었다.
+│   ├── TestStackNavigator	// 코로나 자가 진단 화면들을 위한 Stack Navigator
+│   │  ├── TutorialScreen	// 앱 설치 후 사용자에게 보여 줄 튜토리얼 화면
+│   │  ├── TestScreen		// 코로나 자가 진단 테스트 화면
+│   │  ├── ResultScreen		// 코로나 테스트 결과를 보여 줄 화면
+```
+
+# 소스코드 설명
+
+소스 코드 설명은 다음과 같은 순서로 진행된다.
+
+1. Navigator 설명
+
+2. 화면 별 설명
+
+3. utils 코드 설명
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46c6b63a-a569-4a90-9e6f-eb0eb14a7586/20210607172233.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46c6b63a-a569-4a90-9e6f-eb0eb14a7586/20210607172233.png)
+
+### 
+
+### [1] Navigator
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e413f1ea-7332-4938-b02f-32f494f6b7d3/20210607172347.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e413f1ea-7332-4938-b02f-32f494f6b7d3/20210607172347.png)
+
+### 1) App.tsx
+
+```
+import React, { useEffect, useRef } from 'react'
+import { Platform } from 'react-native'
+import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native'
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
+import Geolocation from 'react-native-geolocation-service'
+import { MainTabNavigator, TestStackNavigator } from 'navigations'
+import { PostWebViewScreen } from 'scenes'
+
+const Stack = createStackNavigator()
+
+export default function App() {
+  const navigationRef = useRef<NavigationContainerRef>(null)
+
+  useEffect(() => {
+    if (Platform.OS === 'ios') {
+      Geolocation.requestAuthorization('always')
+    }
+  }, [])
+
+  return (
+    <NavigationContainer ref={navigationRef}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="MainTabNavigator"
+          component={MainTabNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="TestStackNavigator"
+          component={TestStackNavigator}
+          options={{
+            headerShown: false,
+            ...TransitionPresets.ModalTransition,
+          }}
+        />
+        <Stack.Screen
+          name="PostWebViewScreen"
+          component={PostWebViewScreen}
+          options={{
+            headerShown: false,
+            // ...TransitionPresets.ModalPresentationIOS,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+```
+
+애플리케이션 실행 시 가장 먼저 실행되는 최상위 계층 파일이다.
+
+사용자의 위치를 받아오기 위해 위치 권한을 요청하고, 애플리케이션 탐색을 위한 Navigator들을 반환한다.
+
+### 2) navigations/MainTabNavigator.tsx
+
+```
+import * as React from 'react'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { MapScreen, PostScreen } from 'scenes'
+
+const Tab = createBottomTabNavigator()
+
+export default function MainTabNavigator() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Map" component={MapScreen} />
+      <Tab.Screen name="Post" component={PostScreen} />
+    </Tab.Navigator>
+  )
+}
+
+```
+
+지도 화면과 포스트 화면을 하단 Tab으로 탐색하게 하는 TabNavigator를 리턴한다.
+
+### 3) navigations/TestStackNavigator.tsx
+
+```
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+import { TestScreen, ResultScreen, TutorialScreen } from 'scenes'
+
+const Stack = createStackNavigator()
+
+export default function App() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="TutorialScreen"
+        component={TutorialScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="TestScreen"
+        component={TestScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ResultScreen"
+        component={ResultScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  )
+}
+
+```
+
+튜토리얼, 테스트, 결과 화면을 Stack으로 쌓아 탐색할 수 있게 하는 Navigator를 리턴한다.
+
+### [2] 각 화면 별 내용 정리
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8b702388-a377-4689-9371-f32470a3287c/20210607172514.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8b702388-a377-4689-9371-f32470a3287c/20210607172514.png)
+
+### 1) scenes/test/TutorialScreen.tsx
+
+```
+import React, { useRef } from 'react'
+import { View, ScrollView, Text, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { scale, verticalScale } from 'react-native-size-matters'
+import LottieView from 'lottie-react-native'
+import { color, size } from 'utils'
+
+/** 질문 카드의 너비: 전체 화면 너비 */
+const CARD_WIDTH = size.screenWidth
+/** 질문 카드의 높이: 전체 화면 높이 */
+const CARD_HEIGHT = size.screenHeight
+
+export default function TutorialScreen() {
+  const navigation = useNavigation()
+
+  /** 다음으로 넘어가기 위한 ScrollView ref */
+  const scrollViewRef = useRef<ScrollView>(null)
+
+  return (
+    <View style={{ flex: 1 }}>
+      {/* 수평으로 scroll 되는 ScrollView */}
+      <ScrollView
+        horizontal
+        pagingEnabled
+        bounces={false}
+        ref={scrollViewRef}
+        showsHorizontalScrollIndicator={false}
+        decelerationRate={0.9}
+        // ScrollView를 페이징 되게 하는 props들, 카드를 넘기 듯이 snap 됨
+        snapToInterval={CARD_WIDTH}
+        snapToAlignment="center">
+        <View
+          style={{
+            width: CARD_WIDTH,
+            height: CARD_HEIGHT,
+            paddingVertical: verticalScale(88),
+            paddingHorizontal: scale(32),
+            backgroundColor: color.background.primary,
+            alignItems: 'center',
+          }}>
+          <LottieView
+            autoPlay
+            style={{ width: '110%', alignSelf: 'center', top: -verticalScale(4) }}
+            source={require('lotties/map.json')}
+          />
+          <View>
+            <Text
+              style={{
+                fontSize: scale(32),
+                color: color.text.primary,
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}>
+              {'집에서 가까운 병원'}
+            </Text>
+            <Text
+              style={{
+                fontSize: scale(16),
+                color: color.text.primary,
+                textAlign: 'center',
+                marginTop: verticalScale(24),
+              }}>
+              {'내 주변의 코로나 안심 병원을 찾아보세요.'}
+            </Text>
+          </View>
+          <Pressable
+            style={{
+              width: scale(220),
+              height: scale(50),
+              borderRadius: scale(30),
+              backgroundColor: color.button.primary,
+              alignSelf: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
+              shadowColor: '#000',
+              shadowOffset: { width: 4, height: 4 },
+              shadowOpacity: 0.3,
+              shadowRadius: 4,
+              position: 'absolute',
+              bottom: verticalScale(60),
+            }}
+            onPress={() => scrollViewRef.current?.scrollTo({ x: 1 * CARD_WIDTH })}>
+            <Text style={{ fontSize: scale(20), fontWeight: 'bold', color: color.text.button }}>다음</Text>
+          </Pressable>
+        </View>
+        <View
+          style={{
+            width: CARD_WIDTH,
+            height: CARD_HEIGHT,
+            paddingVertical: verticalScale(88),
+            paddingHorizontal: scale(32),
+            backgroundColor: color.background.primary,
+            alignItems: 'center',
+          }}>
+          <LottieView
+            autoPlay
+            style={{ width: '120%', alignSelf: 'center', top: verticalScale(4) }}
+            source={require('lotties/post.json')}
+          />
+          <View style={{ marginTop: verticalScale(60) }}>
+            <Text
+              style={{
+                fontSize: scale(32),
+                color: color.text.primary,
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}>
+              {'최신 뉴스'}
+            </Text>
+            <Text
+              style={{
+                fontSize: scale(16),
+                color: color.text.primary,
+                textAlign: 'center',
+                marginTop: verticalScale(24),
+              }}>
+              {'코로나 관련 최신 소식들을 가장 먼저 받아보세요.'}
+            </Text>
+          </View>
+          <Pressable
+            style={{
+              width: scale(220),
+              height: scale(50),
+              borderRadius: scale(30),
+              backgroundColor: color.button.primary,
+              alignSelf: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
+              shadowColor: '#000',
+              shadowOffset: { width: 4, height: 4 },
+              shadowOpacity: 0.3,
+              shadowRadius: 4,
+              position: 'absolute',
+              bottom: verticalScale(60),
+            }}
+            onPress={() => scrollViewRef.current?.scrollTo({ x: 2 * CARD_WIDTH })}>
+            <Text style={{ fontSize: scale(20), fontWeight: 'bold', color: color.text.button }}>다음</Text>
+          </Pressable>
+        </View>
+        <View
+          style={{
+            width: CARD_WIDTH,
+            height: CARD_HEIGHT,
+            paddingVertical: verticalScale(88),
+            paddingHorizontal: scale(32),
+            backgroundColor: color.background.primary,
+            alignItems: 'center',
+          }}>
+          <LottieView
+            autoPlay
+            style={{ width: '120%', alignSelf: 'center', top: -verticalScale(16) }}
+            source={require('lotties/test.json')}
+          />
+          <View style={{ marginTop: -verticalScale(36) }}>
+            <Text
+              style={{
+                fontSize: scale(32),
+                color: color.text.primary,
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}>
+              {'으슬으슬... 에취!'}
+            </Text>
+            <Text
+              style={{
+                fontSize: scale(16),
+                color: color.text.primary,
+                textAlign: 'center',
+                marginTop: verticalScale(24),
+              }}>
+              {'앗... 코로나일까? 코로나 자가 진단 테스트를 해보세요.'}
+            </Text>
+          </View>
+          <Pressable
+            style={{
+              width: scale(220),
+              height: scale(50),
+              borderRadius: scale(30),
+              backgroundColor: color.button.primary,
+              alignSelf: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
+              shadowColor: '#000',
+              shadowOffset: { width: 4, height: 4 },
+              shadowOpacity: 0.3,
+              shadowRadius: 4,
+              position: 'absolute',
+              bottom: verticalScale(60),
+            }}
+            onPress={() => navigation.navigate('TestScreen')}>
+            <Text style={{ fontSize: scale(20), fontWeight: 'bold', color: color.text.button }}>다음</Text>
+          </Pressable>
+          <Pressable
+            style={{
+              position: 'absolute',
+              bottom: verticalScale(28),
+            }}
+            onPress={() => navigation.goBack()}>
+            <Text
+              style={{
+                fontSize: scale(14),
+                color: color.text.secondary,
+                textDecorationLine: 'underline',
+              }}>
+              {'다음에 할게요'}
+            </Text>
+          </Pressable>
+        </View>
+      </ScrollView>
+    </View>
+  )
+}
+
+```
+
+처음 앱을 설치한 사용자의 이해를 돕기 위한 튜토리얼 화면이다.
+
+앱의 간단한 기능을 설명하고 코로나 자가 진단 테스트를 해보도록 유도한다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/83bc2c2b-117f-4197-9e94-28c33a8a72aa/KakaoTalk_20210607_171506057.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/83bc2c2b-117f-4197-9e94-28c33a8a72aa/KakaoTalk_20210607_171506057.png)
+
+### 2) scenes/test/TestScreen.tsx
+
+```
+import React, { useEffect, useRef, useState } from 'react'
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { scale, verticalScale } from 'react-native-size-matters'
+import { color, size } from 'utils'
+
+/** 질문 카드의 너비: 전체 화면 너비 */
+const CARD_WIDTH = size.screenWidth
+/** 질문 카드의 높이: 전체 화면 높이 */
+const CARD_HEIGHT = size.screenHeight
+
+interface IQuestion {
+  /** 질문 */
+  question: string
+  /** 선택지 */
+  choices: string[]
+}
+
+/** 질문 데이터 [노션 문서 참고](https://www.notion.so/ddb72faa4b224a56a46db301cc464196) */
+const DATA: IQuestion[] = [
+  { question: '나이가 어떻게 되세요?', choices: ['0-10', '10-20', '20-30', '30-40', '40-60', '60 이상'] },
+  {
+    question: '최근 앓고있는 혹은 최근 2년간 앓았던 호흡기 질환이 있으신가요? (단순 감기, 독감 제외)',
+    choices: ['네', '아니오'],
+  },
+  { question: '현재 체온이 37.5도 이상인가요?', choices: ['네', '아니오'] },
+  { question: '코, 목 혹은 코와 목사이에 통증이 있나요?', choices: ['네', '아니오'] },
+  { question: '다른 증상과 비교했을때 발열 증상이 언제 나타났나요?', choices: ['가장 먼저', '중반', '후반'] },
+  { question: '숨이 가빠진걸 느껴본적이 있으세요?', choices: ['네', '아니오'] },
+  { question: '겪고있는 증상중에 마른 기침 증상이 있나요?', choices: ['네', '아니오'] },
+  { question: '피로감이 있나요?', choices: ['네', '아니오'] },
+  { question: '미각 혹은 후각기능의 저하가 있나요?', choices: ['네', '아니오'] },
+  { question: '앓고있는 증상 중 근육통이 있나요?', choices: ['네', '아니오'] },
+]
+
+interface ITestCardProps {
+  /** 질문 data */
+  data: IQuestion
+  /** 몇 번 쨰 질문인지 index */
+  cardIndex: number
+  /** 질문에 대한 전체 답변을 저장한 배열 */
+  answers: (string | undefined)[]
+  /** 답변 배열 set 함수 */
+  setAnswers: React.Dispatch<React.SetStateAction<(string | undefined)[]>>
+  /** 다음 질문으로 animate 하기 위한 ScrollView ref */
+  scrollViewRef: React.RefObject<ScrollView>
+}
+
+/** 질문 카드 */
+function TestCard(props: ITestCardProps) {
+  return (
+    <View
+      style={{
+        width: CARD_WIDTH,
+        height: CARD_HEIGHT,
+        paddingVertical: verticalScale(88),
+        paddingHorizontal: scale(24),
+        backgroundColor: 'white',
+      }}>
+      {/* 질문 */}
+      <Text style={{ fontSize: scale(26), fontWeight: 'bold', marginBottom: scale(32) }}>{props.data.question}</Text>
+      {/* 객관식 선택지 */}
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        {props.data.choices.map((item, index) => (
+          <TouchableOpacity
+            key={index.toString()}
+            onPress={() => {
+              props.setAnswers((prev) => {
+                const array = [...prev]
+                // 답변 선택 시 array 업데이트
+                array[props.cardIndex] = index.toString()
+                // 다음 질문으로 animate
+                props.scrollViewRef.current?.scrollTo({ x: (props.cardIndex + 1) * CARD_WIDTH })
+                return array
+              })
+            }}
+            style={{
+              width: '100%',
+              height: scale(56),
+              borderRadius: scale(28),
+              justifyContent: 'center',
+              margin: scale(8),
+              paddingLeft: scale(32),
+              opacity: 1,
+              // 선택된 답변은 하이라이트
+              backgroundColor:
+                index.toString() === props.answers[props.cardIndex]
+                  ? `${color.button.primary}`
+                  : `${color.button.disabled.primary}88`,
+            }}>
+            <Text
+              style={{
+                fontSize: scale(14),
+                fontWeight: index.toString() === props.answers[props.cardIndex] ? 'bold' : 'normal',
+                color: index.toString() === props.answers[props.cardIndex] ? color.text.button : color.text.primary,
+              }}>
+              {item}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </View>
+  )
+}
+
+/** 코로나 자가진단 테스트 화면 */
+export default function TestScreen() {
+  const navigation = useNavigation()
+
+  /** 답변 완료 시 다음 질문으로 넘어가기 위한 ScrollView ref */
+  const scrollViewRef = useRef<ScrollView>(null)
+  /** 질문에 대한 답 배열 */
+  const [answers, setAnswers] = useState(new Array<string | undefined>(10))
+
+  useEffect(() => {
+    // 모든 질문에 답변을 했으면
+    if (!answers.includes(undefined)) {
+      fetch(
+        // 서버 형식에 맞게 답변 결과 값 넣어서 url 구성
+        answers.reduce(
+          // 서버엔 질문, 선택지 인덱스가 1부타 시작하므로 각각 1씩 더해 줌
+          (acc, answer, index) => acc + `as${index + 1}=${Number(answer) + 1}&`,
+          'http://52.78.126.183:3000/ows/survey?',
+        ) as string,
+        {
+          method: 'GET',
+        },
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          navigation.navigate('ResultScreen', { score: result.score })
+        })
+        .catch((error) => {
+          console.error('코로나 자가 진단 결과를 불러오지 못 함', error)
+        })
+    }
+  }, [answers, navigation])
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {/* 수평으로 scroll 되는 ScrollView */}
+      <ScrollView
+        horizontal
+        pagingEnabled
+        bounces={false}
+        ref={scrollViewRef}
+        showsHorizontalScrollIndicator={false}
+        decelerationRate={0.9}
+        // ScrollView를 페이징 되게 하는 props들, 카드를 넘기 듯이 snap 됨
+        snapToInterval={CARD_WIDTH}
+        snapToAlignment="center">
+        {/* 질문 카드들 */}
+        {DATA.map((item, index) => (
+          <TestCard
+            key={index.toString()}
+            cardIndex={index}
+            data={item}
+            answers={answers}
+            setAnswers={setAnswers}
+            scrollViewRef={scrollViewRef}
+          />
+        ))}
+      </ScrollView>
+    </View>
+  )
+}
+
+```
+
+코로나 자가 진단을 위한 설문 화면이다.
+
+질문은 총 열 개이며, 모두 객관식이다.
+
+각 질문 카드는 하나의 질문을 담고 있으며 답변을 선택하면 자동으로 다음 카드로 넘어간다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e4797850-b7b5-45fe-8ba9-36e8e4b737a7/KakaoTalk_20210607_171506057_01.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e4797850-b7b5-45fe-8ba9-36e8e4b737a7/KakaoTalk_20210607_171506057_01.png)
+
+### 3) scenes/test/ResultScreen.tsx
+
+```
+import React, { useEffect, useRef } from 'react'
+import { Text, View, Animated, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import LottieView from 'lottie-react-native'
+import { scale, verticalScale } from 'react-native-size-matters'
+import { color, size } from 'utils'
+
+export default function ResultScreen(props: { route: { params: { score: number } } }) {
+  const navigation = useNavigation()
+
+  /** 코로나 자가진단 테스트 결과 점수 */
+  const { score } = props.route.params
+  /** 점수에 비례해 올라오는 웨이브 높이 */
+  const translateX = useRef(new Animated.Value(0)).current
+
+  // 점수가 바뀌면 웨이브 차는 애니메이션 실행
+  useEffect(() => {
+    Animated.timing(translateX, {
+      toValue: (size.screenHeight * score) / 100,
+      duration: 3000,
+      useNativeDriver: true,
+    }).start()
+  }, [score, translateX])
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Animated.View
+        style={{
+          opacity: 0.4,
+          // lottie 파일을 수직으로 된 것으로 구해서 어쩔 수 없이 270도 회전, 다른 스타일도 거기에 맞춰 줌
+          transform: [{ rotate: '270deg' }, { translateX }],
+          height: size.screenWidth,
+          flexDirection: 'row',
+          alignItems: 'center',
+          bottom: -verticalScale(620),
+        }}>
+        {/* 구한 lottie 파일의 높이가 낮아서 밑 부분을 같은 색으로 붙여 줌 */}
+        <View style={{ backgroundColor: '#3F296F', opacity: 0.9, height: '100%', width: size.screenHeight }} />
+        <LottieView autoPlay speed={2} style={{ height: '100%' }} source={require('lotties/wave.json')} />
+      </Animated.View>
+      <Text style={{ position: 'absolute', fontSize: scale(64), fontWeight: 'bold' }}>{score}</Text>
+      <Pressable
+        style={{
+          width: scale(240),
+          height: scale(48),
+          borderRadius: scale(30),
+          backgroundColor: color.button.primary,
+          alignSelf: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          shadowColor: '#000',
+          shadowOffset: { width: 4, height: 4 },
+          shadowOpacity: 0.3,
+          shadowRadius: 4,
+          position: 'absolute',
+          bottom: verticalScale(124),
+        }}
+        onPress={() => navigation.navigate('MainTabNavigator', { screen: 'MapScreen' })}>
+        <Text style={{ fontSize: scale(18), fontWeight: 'bold', color: color.text.button }}>내 주변 병원 찾기</Text>
+      </Pressable>
+      <Pressable
+        style={{
+          width: scale(240),
+          height: scale(48),
+          borderRadius: scale(30),
+          backgroundColor: color.button.secondary,
+          alignSelf: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          shadowColor: '#000',
+          shadowOffset: { width: 4, height: 4 },
+          shadowOpacity: 0.3,
+          shadowRadius: 4,
+          position: 'absolute',
+          bottom: verticalScale(60),
+        }}
+        onPress={() => navigation.navigate('MainTabNavigator', { screen: 'PostScreen' })}>
+        <Text style={{ fontSize: scale(18), fontWeight: 'bold', color: color.text.main }}>코로나 현황 보기</Text>
+      </Pressable>
+      <Pressable
+        style={{
+          position: 'absolute',
+          bottom: verticalScale(28),
+        }}
+        onPress={() => navigation.goBack()}>
+        <Text
+          style={{
+            fontSize: scale(16),
+            color: color.text.button,
+            textDecorationLine: 'underline',
+          }}>
+          {'테스트 다시 하기'}
+        </Text>
+      </Pressable>
+    </View>
+  )
+}
+
+```
+
+코로나 자가진단 테스트 결과를 보여주는 화면이다.
+
+결과에 따라 게이지가 차는 애니메이션이 있으며, 점수에 따라 안내 문구와 UI 구성이 달라진다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a8088e18-5693-41f9-99a8-75810d59cb68/KakaoTalk_20210607_171506057_02.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a8088e18-5693-41f9-99a8-75810d59cb68/KakaoTalk_20210607_171506057_02.png)
+
+### 4) scenes/post/PostScreen.tsx
+
+```
+import React, { useEffect, useState } from 'react'
+import { Text, View, FlatList, ScrollView, Image, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import styled from 'styled-components'
+import { scale } from 'react-native-size-matters'
+import { parse } from 'fast-xml-parser'
+import moment from 'moment'
+import { API_KEY, color, size } from 'utils'
+
+interface IData {
+  key: string
+  title: string
+  description: string
+  url: string
+  images: string[]
+}
+
+const DATA: IData[] = [
+  {
+    key: '0',
+    title:
+      '[코로나19-중앙방역대책본부] “30세 미만 필수인력 등 다음 주부터 화이자백신 접종 예약 시작” (6월 1일 오후 브리핑)',
+    url: 'https://news.kbs.co.kr/news/view.do?ncd=5198934',
+    description:
+      '아스트라제네카 백신 접종 대상에서 제외된 30세 미만에 대해 다음주부터 화이자백신 접종 예약이 시작됩니다. 예약을 받는 우선 접종 대상은 사회필수인력, 취약시설 종사자 등입니다. 지금까지 올림픽 참가가 예정된 국가대표팀 선수 등 특수한 경우를 제외하고 30세 미만은 백신 접종을 받지 못했지만, 30세 미만에 대해서도 백신 접종이 시작되는 것입니다. 중앙방역대책본부는 오늘(1일) 오후 정례브리핑에서 "현재 예방접종센터에서는 75세 이상 어르신에 대한 화이자백신 1차 접종을 6월 13일까지 완료하는 것을 목표로 한다"며, "이어 2차 접종에 집중함과 동시에 아스트라제네카 접종 대상에서 제외된 30세 미만 2분기 접종대상자에게 화이자 백신 접종을 시작한다"고 밝혔습니다.',
+    images: ['https://news.kbs.co.kr/special/covid19/covid19_thumnail_2105.png'],
+  },
+  {
+    key: '1',
+    title: '코로나19 백신 접종 사전예약 이렇게 하세요',
+    url: 'https://mediahub.seoul.go.kr/archives/2001580',
+    description:
+      '내일(10일)부터 65세부터 69세 어르신들에 대한 코로나19 백신 접종 예약이 시작됩니다. 예약은 온라인 사전예약 사이트(ncvr.kdca.go.kr)나 질병관리청 콜센터, 1339 등을 통해 할 수 있는데, 접종 대상자가 60세 이상 고령층인 만큼 자녀들이 본인 인증만 거치면 부모님을 대신해 예약하는 것도 가능합니다.',
+    images: ['https://image.imnews.imbc.com/newszoomin/groupnews/groupnews_9/corona19_inthum.png'],
+  },
+  {
+    key: '2',
+    title: '이틀간 이상반응 2천222건↑…사망신고 10명↑, 인과성 미확인',
+    url: 'https://imnews.imbc.com/news/2021/society/article/6224047_34873.html',
+    description:
+      '코로나19 백신 접종이 꾸준히 진행되는 가운데 접종 후 이상반응을 신고하는 사례가 최근 이틀간 2천여건으로 집계됐습니다.',
+    images: [
+      'https://image.imnews.imbc.com/news/2021/society/article/__icsFiles/afieldfile/2021/06/02/h2021060213.jpg',
+    ],
+  },
+  {
+    key: '3',
+    title: '타이레놀 품귀에 대한약사회 "동일한 약 있으니 안심하세요',
+    url: 'https://imnews.imbc.com/news/2021/society/article/6223647_34873.html',
+    description:
+      '코로나19 백신 접종이 본격화되면서 해열진통제인 \'타이레놀\' 품귀 현상이 벌어지자 대한약사회가 "굳이 타이레놀을 고집할 필요가 없다"며 진화에 나섰습니다.',
+    images: [
+      'https://image.imnews.imbc.com/news/2021/society/article/__icsFiles/afieldfile/2021/06/02/joo210602_1.jpg',
+    ],
+  },
+  {
+    key: '4',
+    title: '미국이 제공한 얀센 100만명분, 30세 이상 예비군-민방위 대원이 맞는다',
+    url: 'https://news.kbs.co.kr/news/view.do?ncd=5197299',
+    description:
+      '미국 정부가 우리 군에 존슨앤존슨사가 개발한 코로나19 얀센 백신 100만 명분을 제공하기로 한 가운데, 이 백신은 30세 이상 예비군과 민방위 대원 등이 맞게 됩니다.',
+    images: ['https://news.kbs.co.kr/data/news/2021/05/30/20210530_tV5n9I.jpg'],
+  },
+  {
+    key: '5',
+    title: '백신 접종 예방효과는?…‘마스크 벗기’ 시기상조?',
+    url: 'https://news.kbs.co.kr/news/view.do?ncd=5194747',
+    description:
+      '[앵커] 야외에서라도 마스크를 벗을 수 있으면 좋겠다, 반면 하루 6,7백명씩 확진자가 나오는 상황인데 시기상조다.. 이런 의견도 있습니다.',
+    images: ['https://news.kbs.co.kr/data/news/title_image/newsmp4/news9/2021/05/26/40_5194747.jpg'],
+  },
+  {
+    key: '6',
+    title: '[코로나19-중앙방역대책본부] “185.1만 명 2차 접종까지 완료” - 5월 25일 오후 브리핑',
+    url: 'https://news.kbs.co.kr/news/view.do?ncd=5193457',
+    description:
+      '어제 하루 17만 3천 명이 코로나 백신 예방접종을 마쳤습니다. 중앙방역대책본부는 오늘(25일) 오후 정례브리핑에서, "25일 0시 기준으로 1차 접종은 7만 1천 명, 2차 접종은 10만 2천 명이 백신 접종을 완료했다"며, "총 185만 1천 명(전체 인구 대비 3.6%)이 2차 접종까지 완료했다"고 밝혔습니다.',
+    images: ['https://news.kbs.co.kr/data/news/2021/05/25/20210525_AkHviZ.jpg'],
+  },
+  {
+    key: '7',
+    title: '백신 맞으면 7월부터 야외서 마스크 벗는다…다음 달부터는 가족모임 인원서 제외',
+    url: 'https://news.kbs.co.kr/news/view.do?ncd=5194326',
+    description:
+      '코로나19 백신을 한번이라도 접종한 사람은 7월부터 야외에서 마스크를 쓰지 않아도 됩니다. 다음달부터는 백신 접종자는 가족 모임 제한 인원수에서 제외합니다.',
+    images: ['https://news.kbs.co.kr/data/news/2021/05/26/20210526_10vUpb.jpg'],
+  },
+  {
+    key: '8',
+    title: '예약 취소한 ‘코로나19 백신’, 네이버·카카오 통해 27일부터 당일 예약',
+    url: 'https://news.kbs.co.kr/news/view.do?ncd=5186099',
+    description:
+      '코로나19 백신 예약 취소로 생기는 잔여 백신을 네이버, 카카오를 통해 당일 예약을 할 수 있게 됩니다. 코로나19 예방접종추진단은 65세 이상 고령층 예방접종이 시행되는 오는 27일부터 예약 취소 등으로 발생하는 잔여 백신을 네이버와 카카오를 통해 신속하게 예약하여 접종할 수 있도록 할 예정입니다.',
+    images: ['https://news.kbs.co.kr/data/news/2021/05/14/20210514_9veu12.jpg'],
+  },
+  {
+    key: '9',
+    title: '백신 접종률 올리기 위한 고육책…접종 증명 어떻게?',
+    url: 'https://news.kbs.co.kr/news/view.do?ncd=5194746',
+    description:
+      '[앵커] 이런 혜택들, 요양시설에도 적용됩니다. 다음달부터 얼굴 맞대고, 접촉 면회를 할 수 있는데 조건이 있습니다. 면회하는 사람은 두 차례 접종을 모두 마치고 나서 2주가 지나야 합니다. 이 경우에도 마스크 착용같은 방역 수칙은 지켜야 합니다.',
+    images: ['https://news.kbs.co.kr/special/covid19/covid19_thumnail_2105.png'],
+  },
+]
+
+/** 보드 카드의 너비: 전체 화면 너비 */
+const CARD_WIDTH = size.screenWidth * 0.84
+/** 보드 카드의 수평 마진 */
+const CARD_MARGIN_HORIZONTAL = size.screenWidth * 0.08
+/** 보드 카드의 높이: 전체 화면 높이 */
+const CARD_HEIGHT = scale(200)
+
+/** 코로나 관련 현황을 보여주는 개별 카드 */
+const CoronaBoardCard = styled(View)`
+  flex: 1;
+  width: ${CARD_WIDTH};
+  height: ${CARD_HEIGHT};
+  margin-horizontal: ${CARD_MARGIN_HORIZONTAL};
+  margin-vertical: ${scale(24)};
+  padding-horizontal: ${scale(16)};
+  padding-vertical: ${scale(12)};
+  border-radius: ${scale(6)};
+  shadow-offset: 8px 8px;
+  shadow-opacity: 0.1;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+`
+
+const CoronaBoardCardMolecule = styled(View)`
+  flex: 1;
+  flex-direction: row;
+`
+
+const CoronaBoardCardAtom = (props: { title: string; count: number; difference: number; colorIndex: number }) => {
+  const colors = ['#FF324F', '#2661FF', '#333333', '#FF8A00']
+
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ color: colors[props.colorIndex], fontSize: scale(14) }}>{props.title}</Text>
+      <Text
+        style={{ color: colors[props.colorIndex], fontSize: scale(18), fontWeight: 'bold', marginVertical: scale(2) }}>
+        {props.count.toLocaleString()}
+      </Text>
+      <Text style={{ color: colors[props.colorIndex], fontSize: scale(12) }}>
+        {props.difference.toLocaleString() + (props.difference > 0 ? '▲' : '▼')}
+      </Text>
+    </View>
+  )
+}
+
+/** 코로나 국내 발생 현황 데이터 타입 */
+interface IDomecticStatus {
+  decideCnt: number
+  clearCnt: number
+  deathCnt: number
+  examCnt: number
+}
+
+/** 코로나 시도별 발생 현황 데이터 타입 */
+interface IRegionalStatus {
+  defCnt: number
+  deathCnt: number
+  isolClearCnt: number
+  isolIngCnt: number
+  incDec: number
+  localOccCnt: number
+  overFlowCnt: number
+  gubun: string
+}
+
+/** 코로나 카드들이 수평으로 위치한 보드 */
+function CoronaBoard() {
+  /** 국내 전체 발생 현황 */
+  const [domesticStatus, setDomesticStatus] = useState<IDomecticStatus[]>()
+  /** 지역 발생 현황 */
+  const [regionalStatus, setRegionalStatus] = useState<IRegionalStatus[]>()
+
+  useEffect(() => {
+    var url = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson'
+    var queryParams = '?' + encodeURIComponent('ServiceKey') + '=' + API_KEY
+    queryParams +=
+      '&' + encodeURIComponent('startCreateDt') + '=' + encodeURIComponent(moment().subtract(1, 'd').format('YYYYMMDD'))
+    queryParams += '&' + encodeURIComponent('endCreateDt') + '=' + encodeURIComponent(moment().format('YYYYMMDD'))
+
+    fetch(url + queryParams)
+      .then((response) => response.text())
+      .then((responseText) => {
+        setDomesticStatus(parse(responseText).response.body.items.item)
+      })
+      .catch((error) => {
+        console.log('코로나 현황 불러오기 실패: ', error)
+      })
+
+    var url = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson'
+    var queryParams = '?' + encodeURIComponent('ServiceKey') + '=' + API_KEY
+    queryParams +=
+      '&' + encodeURIComponent('startCreateDt') + '=' + encodeURIComponent(moment().subtract(1, 'd').format('YYYYMMDD'))
+    queryParams += '&' + encodeURIComponent('endCreateDt') + '=' + encodeURIComponent(moment().format('YYYYMMDD'))
+
+    fetch(url + queryParams)
+      .then((response) => response.text())
+      .then((responseText) => {
+        setRegionalStatus(
+          // FIXME: 실제 지역 연결 전 임시로 서울로 설정
+          parse(responseText).response.body.items.item.filter((status: IRegionalStatus) => status.gubun === '서울'),
+        )
+      })
+      .catch((error) => {
+        console.log('코로나 시도별 현황 불러오기 실패: ', error)
+      })
+  }, [])
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {/* 수평으로 scroll 되는 ScrollView */}
+      <ScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        decelerationRate={0.9}
+        // ScrollView를 페이징 되게 하는 props들, 카드를 넘기 듯이 snap 됨
+        snapToInterval={CARD_WIDTH + 2 * CARD_MARGIN_HORIZONTAL}
+        snapToAlignment="center">
+        {/* 0 */}
+        <CoronaBoardCard key={'0'}>
+          {domesticStatus?.length === 2 && (
+            <>
+              <CoronaBoardCardMolecule>
+                <CoronaBoardCardAtom
+                  title={'확진자'}
+                  count={domesticStatus[0].decideCnt}
+                  difference={domesticStatus[0].decideCnt - domesticStatus[1].decideCnt}
+                  colorIndex={0}
+                />
+                <CoronaBoardCardAtom
+                  title={'격리해제'}
+                  count={domesticStatus[0].clearCnt}
+                  difference={domesticStatus[0].clearCnt - domesticStatus[1].clearCnt}
+                  colorIndex={1}
+                />
+              </CoronaBoardCardMolecule>
+              <CoronaBoardCardMolecule>
+                <CoronaBoardCardAtom
+                  title={'사망자'}
+                  count={domesticStatus[0].deathCnt}
+                  difference={domesticStatus[0].deathCnt - domesticStatus[1].deathCnt}
+                  colorIndex={2}
+                />
+                <CoronaBoardCardAtom
+                  title={'검사진행'}
+                  count={domesticStatus[0].examCnt}
+                  difference={domesticStatus[0].examCnt - domesticStatus[1].examCnt}
+                  colorIndex={3}
+                />
+              </CoronaBoardCardMolecule>
+            </>
+          )}
+        </CoronaBoardCard>
+        {/* 1 */}
+        <CoronaBoardCard key={'1'}>
+          {regionalStatus?.length === 2 && (
+            <>
+              <CoronaBoardCardMolecule>
+                <CoronaBoardCardAtom
+                  title={'확진자'}
+                  count={regionalStatus[0].defCnt}
+                  difference={regionalStatus[0].defCnt - regionalStatus[1].defCnt}
+                  colorIndex={0}
+                />
+                <CoronaBoardCardAtom
+                  title={'사망자'}
+                  count={regionalStatus[0].deathCnt}
+                  difference={regionalStatus[0].deathCnt - regionalStatus[1].deathCnt}
+                  colorIndex={1}
+                />
+              </CoronaBoardCardMolecule>
+              <CoronaBoardCardMolecule>
+                <CoronaBoardCardAtom
+                  title={'격리해제'}
+                  count={regionalStatus[0].isolClearCnt}
+                  difference={regionalStatus[0].isolClearCnt - regionalStatus[1].isolClearCnt}
+                  colorIndex={2}
+                />
+                <CoronaBoardCardAtom
+                  title={'치료 중'}
+                  count={regionalStatus[0].isolIngCnt}
+                  difference={regionalStatus[0].isolIngCnt - regionalStatus[1].isolIngCnt}
+                  colorIndex={3}
+                />
+              </CoronaBoardCardMolecule>
+            </>
+          )}
+        </CoronaBoardCard>
+        {/* 2 */}
+        <CoronaBoardCard key={'2'}>
+          {regionalStatus?.length === 2 && (
+            <>
+              <CoronaBoardCardMolecule>
+                <CoronaBoardCardAtom
+                  title={'일일 확진자'}
+                  count={regionalStatus[0].incDec}
+                  difference={regionalStatus[0].incDec - regionalStatus[1].incDec}
+                  colorIndex={2}
+                />
+              </CoronaBoardCardMolecule>
+              <CoronaBoardCardMolecule>
+                <CoronaBoardCardAtom
+                  title={'국내발생'}
+                  count={regionalStatus[0].localOccCnt}
+                  difference={regionalStatus[0].localOccCnt - regionalStatus[1].localOccCnt}
+                  colorIndex={0}
+                />
+                <CoronaBoardCardAtom
+                  title={'해외유입'}
+                  count={regionalStatus[0].overFlowCnt}
+                  difference={regionalStatus[0].overFlowCnt - regionalStatus[1].overFlowCnt}
+                  colorIndex={1}
+                />
+              </CoronaBoardCardMolecule>
+            </>
+          )}
+        </CoronaBoardCard>
+        {/* 3 */}
+        <CoronaBoardCard key={'3'}>
+          <Text
+            style={{
+              fontSize: scale(20),
+              fontWeight: 'bold',
+              top: -scale(16),
+              color: color.text.primary,
+            }}>
+            거리두기 단계
+          </Text>
+          <Text style={{ fontSize: scale(72), fontWeight: 'bold', color: color.text.primary }}>2</Text>
+          <Text
+            style={{
+              fontSize: scale(12),
+              position: 'absolute',
+              bottom: scale(12),
+              right: scale(18),
+              color: color.text.secondary,
+            }}>
+            *21.5.24~6.13
+          </Text>
+        </CoronaBoardCard>
+      </ScrollView>
+    </View>
+  )
+}
+
+function Post(props: { data: IData }) {
+  const navigation = useNavigation()
+  const { data } = props
+
+  return (
+    <Pressable
+      onPress={() => navigation.navigate('PostWebViewScreen', { uri: data.url })}
+      style={{
+        width: '100%',
+        height: 100,
+        borderBottomWidth: scale(1),
+        borderColor: color.divider,
+        backgroundColor: 'white',
+        paddingVertical: scale(6),
+        paddingHorizontal: scale(12),
+        justifyContent: 'center',
+      }}>
+      <View style={{ flexDirection: 'row' }}>
+        <Image
+          style={{
+            width: scale(60),
+            height: scale(60),
+            borderRadius: scale(12),
+            marginRight: scale(12),
+            backgroundColor: color.background.secondary,
+          }}
+          source={{ uri: data.images[0] }}
+        />
+        <View style={{ flex: 1 }}>
+          <Text numberOfLines={2} style={{ fontSize: scale(17), color: color.text.primary, marginBottom: scale(4) }}>
+            {data.title}
+          </Text>
+          <Text numberOfLines={2} style={{ fontSize: scale(12), color: color.text.secondary }}>
+            {data.description}
+          </Text>
+        </View>
+      </View>
+    </Pressable>
+  )
+}
+
+export default function PostScreen() {
+  return (
+    <View style={{ flex: 1 }}>
+      <FlatList
+        keyExtractor={(item) => item.toString()}
+        data={DATA}
+        renderItem={(item) => <Post data={item.item} />}
+        ListHeaderComponent={<CoronaBoard />}
+      />
+    </View>
+  )
+}
+
+```
+
+코로나 현황과 관련 최신 뉴스들을 확인할 수 있다.
+
+화면 상단에는 국내 현황, 지역 현황, 지역 일일 현황, 그리고 거리두기 단계를 볼 수 있는 수평 ScrollView가 있고, 아래로는 코로나 관련 최신 뉴스들을 모아볼 수 있다.
+
+코로나 현황 정보를 얻기 위하여 보건복지부에서 제공하는 open API를 사용하였다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b6f605f-69d4-4972-9fdf-2c26d9d212e2/KakaoTalk_20210607_171506057_03.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b6f605f-69d4-4972-9fdf-2c26d9d212e2/KakaoTalk_20210607_171506057_03.png)
+
+### 5) scenes/post/PostWebViewScreen.tsx
+
+```
+import React from 'react'
+import WebView from 'react-native-webview'
+
+export default function PostWebViewScreen(props: {
+  route: {
+    params: { uri: string }
+  }
+}) {
+  const { uri } = props.route.params
+
+  return <WebView source={{ uri }} />
+}
+
+```
+
+포스트 화면에서 뉴스를 누르면 이 화면으로 이동한다.
+
+react-native-webview 라이브러리를 사용하여 앱 내에서 웹으로 연결하도록 하였다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b8d45b80-309a-4500-b2c3-e8f3c7e97901/KakaoTalk_20210607_171506057_04.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b8d45b80-309a-4500-b2c3-e8f3c7e97901/KakaoTalk_20210607_171506057_04.png)
+
+### 6) scenes/MapScreen.tsx
+
+```
+import React, { useCallback, useEffect, useState } from 'react'
+import { TouchableOpacity, View, Text, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import styled from 'styled-components'
+import MapView, { Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps'
+import Geolocation from 'react-native-geolocation-service'
+import { scale, verticalScale } from 'react-native-size-matters'
+
+const Tag = styled(TouchableOpacity)`
+  background-color: white;
+  height: ${scale(24)};
+  padding-horizontal: ${scale(6)};
+  border-radius: ${scale(12)};
+  align-items: center;
+  justify-content: center;
+  margin-right: ${scale(8)};
+`
+
+export default function MapScreen() {
+  const navigation = useNavigation()
+
+  const [region, setRegion] = useState<Region>({
+    latitude: 0,
+    longitude: 0,
+    latitudeDelta: 0.05,
+    longitudeDelta: 0.02,
+  })
+  // FIXME: 타입 any 수정
+  /** 지도에 표기할 병원들 */
+  const [hospitals, setHospitals] = useState<any>([])
+
+  const setLocationFromCurrent = useCallback(
+    () =>
+      Geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords
+          setRegion({
+            latitude,
+            longitude,
+            latitudeDelta: 0.035,
+            longitudeDelta: 0.02,
+          })
+        },
+        (error) => {
+          console.error(error)
+        },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
+      ),
+    [],
+  )
+
+  // useEffect(() => {
+  //   setLocationFromCurrent()
+  // }, [setLocationFromCurrent])
+
+  // FIXME: 시연 전 개발을 위해 일단 세종대학교 대양 AI 센터를 위치로 잡음
+  useEffect(() => {
+    setRegion({
+      latitude: 37.551080473869774,
+      longitude: 127.07572521105389,
+      latitudeDelta: 0.035,
+      longitudeDelta: 0.02,
+    })
+  }, [])
+
+  return (
+    <View style={{ flex: 1 }}>
+      <MapView
+        style={{ flex: 1 }}
+        provider={PROVIDER_GOOGLE}
+        region={region}
+        showsUserLocation
+        followsUserLocation
+        showsMyLocationButton>
+        {hospitals.map((hospital: any, index: number) => (
+          <Marker
+            // 일반 병원 ?? 코로나 병원 순서
+            key={index}
+            coordinate={{
+              latitude: hospital.YPos?._text ?? hospital.lat,
+              longitude: hospital.XPos?._text ?? hospital.lng,
+            }}
+            title={hospital.yadmNm?._text ?? hospital.yadmnm}
+            description={`\n주소: ${hospital.addr?._text ?? hospital.addr}\n전화번호: ${
+              hospital.telno?._text ?? hospital.telno
+            }
+            `}
+          />
+        ))}
+      </MapView>
+      <Pressable
+        onPress={() => navigation.navigate('TestStackNavigator')}
+        style={{ padding: 10, marginRight: 10, position: 'absolute', top: verticalScale(24), right: scale(6) }}
+        hitSlop={10}>
+        <Text>Test</Text>
+      </Pressable>
+      <View style={{ position: 'absolute', marginHorizontal: scale(16), marginTop: scale(24), flexDirection: 'row' }}>
+        <Tag
+          onPress={() => {
+            fetch('http://52.78.126.183:3000/ows/covid-hospital', {
+              method: 'GET',
+            })
+              .then((response) => response.json())
+              .then((result) => {
+                console.log(result)
+                setHospitals(result)
+              })
+              .catch((error) => {
+                console.error('코로나 안심 병원을 불러오지 못함', error)
+              })
+          }}>
+          <Text>#코로나 안심 병원</Text>
+        </Tag>
+        <Tag
+          onPress={() => {
+            fetch(
+              `http://52.78.126.183:3000/ows/hospital?lng=${region.longitude}&lat=${region.latitude}&radius=500&dgsbjtCd=01`,
+              {
+                method: 'GET',
+              },
+            )
+              .then((response) => response.json())
+              .then((result) => {
+                console.log(result)
+                setHospitals(result.result)
+              })
+              .catch((error) => {
+                console.error('일반 진료 병원을 불러오지 못함', error)
+              })
+          }}>
+          <Text>#일반 진료</Text>
+        </Tag>
+      </View>
+    </View>
+  )
+}
+
+```
+
+지도 화면이다. Google Map API를 사용하여, 전 세계 지형 정보 및 건물 정보 등을 가지고 있다.
+
+사용자의 위치를 추적하고 표시하며, 코로나 안심 병원과 일반 진료 병원들의 위치를 지도에 표시한다.
+
+지도에 표시된 병원의 마커를 누르면 병원의 이름과 주소, 전화번호가 뜬다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fff17a23-0693-44e6-9b16-e1729238a17c/KakaoTalk_20210607_171506057_05.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fff17a23-0693-44e6-9b16-e1729238a17c/KakaoTalk_20210607_171506057_05.png)
+
+### [3] utils 코드 설명
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a7f66758-661b-425e-9723-edceab452c62/20210607172641.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a7f66758-661b-425e-9723-edceab452c62/20210607172641.png)
+
+### 
+
+### 1) color.ts
+
+```
+export default {
+  /** 글자 색 */
+  text: {
+    /** #333333 black: ![](https://www.colorhexa.com/333333.png) */
+    primary: '#333333',
+    /** #666666 brownishGey: ![](https://www.colorhexa.com/666666.png) */
+    secondary: '#666666',
+    /** #bbbbbb veryLightPink: ![](https://www.colorhexa.com/bbbbbb.png) */
+    hint: '#bbbbbb',
+    /** #ffffff white: ![](https://www.colorhexa.com/ffffff.png) */
+    button: '#ffffff',
+    /** #3F296F deepPurple: ![](https://www.colorhexa.com/a26077.png) */
+    main: '#3F296F',
+    /** #ff5e73 coralPink: ![](https://www.colorhexa.com/ff5e73.png) */
+    caution: '#ff5e73',
+  },
+
+  /** #eeeeee veryLightPinkTwo: ![](https://www.colorhexa.com/eeeeee.png) */
+  divider: '#eeeeee',
+
+  /** 버튼 색상 */
+  button: {
+    /** #3F296F deepPurple: ![](https://www.colorhexa.com/3F296F.png) */
+    primary: '#3F296F',
+    /** #ffffff white: ![](https://www.colorhexa.com/ffffff.png) */
+    secondary: '#ffffff',
+    disabled: {
+      /** #d0ccd9 fadedPurple: ![](https://www.colorhexa.com/d0ccd9.png) */
+      primary: '#d0ccd9',
+    },
+  },
+
+  /** 배경 색상 */
+  background: {
+    /** #ffffff whiteTwo: ![](https://www.colorhexa.com/ffffff.png) */
+    primary: '#ffffff',
+    /** #f5f5f5 white: ![](https://www.colorhexa.com/f5f5f5.png) */
+    secondary: '#f5f5f5',
+    /** #3F296F deepPurple: ![](https://www.colorhexa.com/a26077.png) */
+    main: '#3F296F',
+  },
+
+  /** 기타 색상들 */
+  palette: {
+    /** 앱 메인 색상(딥퍼플) ![](https://www.colorhexa.com/3F296F.png) */
+    main: '#3F296F',
+    /** disabled 버튼 색상 ![](https://www.colorhexa.com/d0ccd9.png) */
+    disabled: '#d0ccd9',
+    /** 아이콘 등에서 자주 사용되는 색상(쨍한 분홍색) ![](https://www.colorhexa.com/ff5e73.png) */
+    mainPink: '#ff5e73',
+    /** 토스트, 버튼 등에서 사용되는 파란색 */
+    blue: '#008FFA',
+  },
+}
+
+```
+
+애플리케이션에 자주 쓰이는 색상 코드들을 용도별로 모아두었다.
+
+마크다운 문법을 적용하여 해당하는 변수에 hover하면 색상이 보이도록 하였다.
+
+이렇게 관리하면 메인 테마가 바뀌어도 쉽게 적용할 수 있다. 또, 추후 다크 모드를 제공한다면 쉽게 구현할 수 있을 것이다.
+
+### 2) size.ts
+
+```
+import { Dimensions } from 'react-native'
+
+/** 화면 가로 길이 */
+const screenWidth = Dimensions.get('window').width
+/** 화면 세로 길이 */
+const screenHeight = Dimensions.get('window').height
+
+export default {
+  screenWidth,
+  screenHeight,
+}
+
+```
+
+UI 개발에 필요한 상수들을 모아두었다. 절대 경로 임포트로 어디서든 깔끔하게 불러와 사용할 수 있다.
+
+### 3) index.ts
+
+```
+export { default as size } from './size'
+export { default as color } from './color'
+
+/** 보건복지부 코로나19 감염 현황 api service key */
+export const API_KEY =
+  'WzaM%2FMuPotmXrd0Or5PUVwI26EkhhorcTdzDdC%2Bm1vtS7aLHUlvcgyyetX50aUP9fL9mYwEJ2MuXBZ1ScHqq9A%3D%3D'
+
+```
+
+open API 사용을 위한 service key를 두었다.

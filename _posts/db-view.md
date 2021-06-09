@@ -1,5 +1,5 @@
 ---
-title: DB view란?
+title: DB view and Privilege란?
 date: 2021-06-08 01:09:00 -0400
 categories: DB
 ---
@@ -79,3 +79,41 @@ CASCADE : 뷰를 참조하는 모든 뷰, 제약조건까지도 삭제가 이루
 - row subset view
 - join view
 - statistical summary view
+
+# Privilege
+
+데이터베이스를 이용하는 각 유저들마다 데이터의 접근을 제한하는 개념이다.
+
+권한의 종류는 읽기, 삽입, 갱신, 삭제 4가지 종류가 있다.
+
+## 문법
+
+```
+# 문법
+GRANT 권한 ON 데이터베이스.테이블 TO '아이디'@'호스트' IDENTIFIED BY '비밀번호'
+
+#문법
+SHOW GRANTS FOR 사용자 이름;
+
+# 문법
+REVOKE 권한 ON 데이터베이스.테이블 FROM 사용자
+
+# 예제 : 사용자 dev의 데이터베이스 class의 DELETE 권한을 제거
+revoke DELETE on class.* from dev;
+```
+
+## 예제
+
+시나리오의 상황은 loan_staff라는 view가 있는데 이를 직원이 접근할 수 있도록 만드는것
+
+```sql
+// 유저를 생성하기 이름은 staff 아이디는 staffpw
+CREATE USER 'staff'@localhost IDENTIFED BY 'staffpw';
+
+//조회 권한을 부여하기
+GRANT SELECT ON db.loan_staff TO staff@localhost;
+//SHOW GRANTS FOR staff@localhost;를 통해 부여된 권한의 정보를 볼 수 있다.
+
+//사용자의 권한을 제거
+REVOKE SELECT ON db.loan_staff(use를 통해 들어왔다면 loan_staff만) TO staff@localhost
+```
