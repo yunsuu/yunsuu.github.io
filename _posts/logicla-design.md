@@ -218,3 +218,175 @@ aggregation(집합)
 5. 일반화 추상화 관계를 스키마로 변환
 
 ---
+
+# Logical Database Design2
+
+ER 다이어그램으로 릴레이션이 잘 뽑아냈을때
+
+이제는 정규화를 통해 뽑아낸 릴레이션을 잘 다듬을 시간!
+
+## 데이터 이상 현상
+
+데이터가 잘 분리되지 않는다면(정규화가 안되었다면) 데이터 이상 현상이 일어날 수 있다.
+
+데이터 이상현상이 일어나는 이유는 서로 연관된, 종속성을 가지고 있는 정보를 한곳에 저장을 하기 때문이다.
+
+**1. 삭제 이상**
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7df490a4-debe-4580-b61f-62a39fce3b89/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7df490a4-debe-4580-b61f-62a39fce3b89/Untitled.png)
+
+정보를 삭제할때 중요한 정보까지 삭제되어 버리는 현상
+
+주황색 데이터를 삭제하려고 하면 원치않는 3(semester)도 같이 삭제가 되어버릴 수 밖에 없는 구조
+
+**2. 삽입이상**
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/01d92924-ed80-4695-be97-d0bfd8c5b2cd/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/01d92924-ed80-4695-be97-d0bfd8c5b2cd/Untitled.png)
+
+데이터를 삽입할때 빈 공간에 어떤 데이터를 삽입해야할지 알 수 없는 문제
+
+**3.  갱신이상**
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a940279f-6bfa-4a96-98b7-355c7fa1e486/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a940279f-6bfa-4a96-98b7-355c7fa1e486/Untitled.png)
+
+반복된 데이터 중에 일부를 갱신 할 시 데이터의 불일치가 발생한다.
+
+## 함수적 종속성
+
+**함수적 종속(Functional Dependency)**
+
+함수적 종속이란 어떤 릴레이션 R이 있을때 X와 Y를 각각 속성의 부분집합이라고 가정해봅니다. 
+
+여기서 X의 값을 알면 Y의 값을 바로 식별할 수 있고, X의 값에 Y의 값이 달라질 때, **Y는 X에 함수적 종속**이라고 합니다. 
+
+이 경우 **X를 결정자**, **Y를 종속자**라고 합니다. 이를 기호로 표현하면 **X→Y**입니다. 
+
+이런 함수적 종속관계에는 **완전 함수적 종속**과 **부분 함수적 종속** 및 **이행적 함수 종속**이 있습니다.
+
+**[예시]**
+
+[제목 없음](https://www.notion.so/e8e633bfd86445f0a6eba82cb799cd19)
+
+이 릴레이션에서는 '학번'을 알면 '이름', '나이', '성별' 속성을 식별할 수 있으며, 
+
+'학번'이 다르면 그에따른 값도 다릅니다.
+
+따라서 '이름', '나이', '성별' 속성은 '힉번'에 함수적인 종속관계입니다.
+
+같은 이유로 전공 속성또한 '전공코드'에 함수적인 종속관계에 있습니다.
+
+학번→이름, 학번→나이, 학번→성별
+
+###
+
+## 바람직한 일반화의 3가지 조건
+
+- BCNF
+- Lossless-join decomposition
+- Dependency preserving decomposition
+
+## FD 다이어그램 및 용어정리
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3aaf9739-cf42-4e3e-9717-b9a30ed30d4c/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3aaf9739-cf42-4e3e-9717-b9a30ed30d4c/Untitled.png)
+
+## 클로저
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0c308e7e-025c-493e-9d9c-a10290c982c6/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0c308e7e-025c-493e-9d9c-a10290c982c6/Untitled.png)
+
+클로저란 관계의 집합 F를 통해 추가적으로 추론할 수 있는 관계들의 집합을 클로저라 F+ 라고 한다.
+
+### canonical cover란 어떠한 것에대해 추론이 가능한 관계는 지우는게 좋다 라는 뜻
+
+### 클로저의 연산 규칙
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8f6e5723-9303-4dc6-9bae-d0972598e6b5/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8f6e5723-9303-4dc6-9bae-d0972598e6b5/Untitled.png)
+
+### 클로저 예시
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1104ccfd-42bf-49d2-bff5-b0a58ad11020/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1104ccfd-42bf-49d2-bff5-b0a58ad11020/Untitled.png)
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/45c25b80-44d1-4c8e-9b62-1fc82d96b81c/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/45c25b80-44d1-4c8e-9b62-1fc82d96b81c/Untitled.png)
+
+## 클로저를 구하는 순서? → 영상 한번 봐보기
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f2060ae1-64b5-4e68-8c07-c21caaa36e30/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f2060ae1-64b5-4e68-8c07-c21caaa36e30/Untitled.png)
+
+## BCNF
+
+### BCNF란
+
+X -> Y 가 있을때 X와 Y 모두 릴레이션 R에 속해있어야 하고
+
+X -> Y 가 trivial해야 한다.
+
+그리고 X 는 릴레이션 R 의 슈퍼키이다
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ac097a57-2220-4df4-994a-3ac104afb660/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ac097a57-2220-4df4-994a-3ac104afb660/Untitled.png)
+
+BCNF를 위반하는 경우
+
+BCNF는 기본키가 모든 종속성을 속성을 결정해야하는 구조를 가지고 있어야 하며 혹시 그외 다른 종속성을 가지고 있다면 BCNF를 위반한다고 볼 수 있다.
+
+### BCNF를 만드는 법
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/21657389-b387-41a9-ba77-2f64e30bca08/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/21657389-b387-41a9-ba77-2f64e30bca08/Untitled.png)
+
+BCNF가 아닌 테이블이 있고 BCNF를 위반하는 종속성 A → B가 있다고 한다면
+
+릴레이션 R - (B - A) 
+
+이 식을 통해 나오는 속성들을 통해 테이블을 구성하면 BCNF를 만족하는 테이블을 구성할 수 있다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ada5866c-0216-4d83-b316-8179054b5bb5/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ada5866c-0216-4d83-b316-8179054b5bb5/Untitled.png)
+
+BCNF는 결국 테이블을 나누는 과정이다. 때문에 BCNF 도출 과정을 진행한 후 좋은 일반화의 조건인 dependency preserving descomposition를 만족하는지 체크 하는게 좋다.
+
+## Dependency preserving decomposition
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5cafa6d6-136c-419c-ab07-bef77b45a25e/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5cafa6d6-136c-419c-ab07-bef77b45a25e/Untitled.png)
+
+Dependency preserving decomposition이란
+
+릴레이션 R과 그에대한 함수적 종속성 F라고할때
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0e543008-23fd-4ecd-9e78-35b20ca5088f/20210609162501.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0e543008-23fd-4ecd-9e78-35b20ca5088f/20210609162501.png)
+
+마지막 줄을 만족하면 DPD라고 말할 수 있다.
+
+ 쉽게 말하면 테이블을 나누어도 각 데이터들의 연결도가 손상이 안된상태라고 할 수 있다.
+
+### 예제
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dc4bfa34-cd2b-4dcf-9c6e-ad155aab9bc5/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dc4bfa34-cd2b-4dcf-9c6e-ad155aab9bc5/Untitled.png)
+
+F = ABCD
+
+F1 구하려면 ABCD에서 없는거 지우기
+
+A+ 는 D없으니까 지우기 A→BC
+
+### 클로저 활용 3가지
+
+슈퍼키
+
+함수적 종속성 hold 관계
+
+클로저 구하기
+
+## Lossless join Decomposition
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0cfb1376-4af0-464c-83f9-99589d23c9f9/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0cfb1376-4af0-464c-83f9-99589d23c9f9/Untitled.png)
+
+간단히 말하면 두테이블을 자연 조인을 했을때 
+
+테이블의 형태가 카디션 곱 형태가 아닌 형태로 이루어지는 것이 Lossless Join Decomposition 이다.
+
+**정의로 말한다면**
+
+ R을 R1, R2로 나누었을때 R1 join R2를 했을때 R이 나오는 것
+
+**이를 확인 하는 방법은** 
+
+R1 n R2 의 교집합이 어느 한쪽의 슈퍼키이면 LJD를 만족한다.
+
+---
